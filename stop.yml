@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+  become_user: root
+  tasks:
+    - name:
+      docker_container:
+        name: wordpress_projekt
+        state: stopped
+
+    - name: fahre die Datenbank runter
+      docker_container:
+        name: mysql_db
+        state: stopped

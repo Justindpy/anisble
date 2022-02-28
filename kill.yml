@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: yes
+  become_user: root
+  tasks:
+    - name: loesche wordpress container
+      raw: sudo docker rm -f wordpress_projekt mysql_db
+      
+#    - name:
+#      docker_container:
+#        name: wordpress_projekt
+#        state: absent
+
+   # - name:
+  #    docker_container:
+ #       name: mysql_db
+#        state: absent
