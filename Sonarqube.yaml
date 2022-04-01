@@ -1,0 +1,38 @@
+---
+#Playbook für Sonarqube
+- name: Container
+  hosts: 192.168.56.105
+  remote_user: tobias
+  
+  tasks: 
+  
+   - name: ping 
+     ansible.builtin.ping:
+ 
+     
+      
+   - name: create Volume
+     docker_volume:
+       name: sonarvol
+       state: present
+    
+   - name: Start Sonarqube
+     docker_container:
+       name: Sonarqubtainer
+       image: sonarqube
+       mounts:
+        - source: sonarvol
+          target: /opt/sonarqube/data
+       keep_volumes: yes    
+       state: started
+       ports:
+        - "192.168.178.99:9000:9000"
+     
+                   
+   
+          
+  vars:
+   ansible_python_interpreter: /bin/python3
+   ansible_sudo_pass: Hannahbaker1!      
+  
+...          
